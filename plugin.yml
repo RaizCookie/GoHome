@@ -1,0 +1,11 @@
+name: GoHome
+version: 1.3.7
+main: de.raizcookie.gohome.main.Main
+
+commands:
+   home:
+      description: Teleports you to your home!
+   delhome:
+      description: Removes your home!
+   sethome: 
+      description: Places a home!
