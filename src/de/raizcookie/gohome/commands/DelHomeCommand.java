@@ -50,19 +50,19 @@ public class DelHomeCommand implements CommandExecutor{
           if (SetHomeCommand.homes.exists() && SetHomeCommand.homes.length() > 1L)  {
             ConfigurationSection cs = cfg.getConfigurationSection(p.getName() + ".");
             int i = 0;
-            String worlds = "";
-            for (String arena : cs.getKeys(false))  {
+            String homeName = "";
+            for (String homes : cs.getKeys(false))  {
               i++;
-              worlds = arena;
+              homeName = homes;
             }
-            if (worlds != "" && (SetHomeCommand.homes.length() > 1L))   {
+            if (homeName != "" && (SetHomeCommand.homes.length() > 1L))   {
               if (i != 1) {
                 p.sendMessage(Messages.cfg.getString("home_del_usage").replace("&", "§"));
               }
               else {
-                cfg.set(p.getName() + "." + worlds, null);
+                cfg.set(p.getName() + "." + homeName, null);
                 save();
-                p.sendMessage(Messages.cfg.getString("home_del_success").replace("&", "§").replace("<HOME>", worlds));
+                p.sendMessage(Messages.cfg.getString("home_del_success").replace("&", "§").replace("<ARG0>", homeName));
               }
             }
             else {
