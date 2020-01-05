@@ -1,4 +1,4 @@
-package de.raizcookie.gohome.commands;
+package de.raizcookie.gohome.methods;
 
 import de.raizcookie.gohome.main.Main;
 import java.io.File;

@@ -1,6 +1,8 @@
 package de.raizcookie.gohome.commands;
 
 import de.raizcookie.gohome.main.Main;
+import de.raizcookie.gohome.methods.Messages;
+
 import java.io.File;
 import java.io.IOException;
 import org.bukkit.Location;
@@ -10,18 +12,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-public class SetHomeCommand implements CommandExecutor{
+public class SetHome implements CommandExecutor{
   public static File homes = new File(Main.getPlugin().getDataFolder().getAbsolutePath(), "homes.yml");
   public static YamlConfiguration cfg = YamlConfiguration.loadConfiguration(homes);
   
-  
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
-    if (!(sender instanceof Player)){
+    if (!(sender instanceof Player))
     	return false;
-    }
       Player p = (Player)sender;
       if (!p.hasPermission("gohome.set")){
-    	  p.sendMessage(Messages.cfg.getString("no_permission").replace("&", "ง"));
+    	  p.sendMessage(Messages.cfg.getString("no_permission").replace("&", "ยง"));
     	  return false;
       }
         Messages.check();
@@ -41,10 +41,10 @@ public class SetHomeCommand implements CommandExecutor{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-            p.sendMessage(Messages.cfg.getString("home_set").replace("&", "ง").replace("<ARG0>", args[0]));
+            p.sendMessage(Messages.cfg.getString("home_set").replace("&", "ยง").replace("<ARG0>", args[0]));
           }
           else{
-            p.sendMessage(Messages.cfg.getString("home_exists").replace("&", "ง").replace("<ARG0>", args[0]));
+            p.sendMessage(Messages.cfg.getString("home_exists").replace("&", "ยง").replace("<ARG0>", args[0]));
           }
         }
         else if (args.length == 0){
@@ -60,10 +60,10 @@ public class SetHomeCommand implements CommandExecutor{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-          p.sendMessage(Messages.cfg.getString("home_set").replace("&", "ง").replace("<ARG0> ", ""));
+          p.sendMessage(Messages.cfg.getString("home_set").replace("&", "ยง").replace("<ARG0> ", ""));
         }
         else{
-          p.sendMessage(Messages.cfg.getString("home_set_usage").replace("&", "ง"));
+          p.sendMessage(Messages.cfg.getString("home_set_usage").replace("&", "ยง"));
         }
     return false;
   }

@@ -1,4 +1,4 @@
-package de.raizcookie.gohome.inventory;
+package de.raizcookie.gohome.methods;
 
 import java.util.ArrayList;
 
@@ -15,12 +15,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import de.raizcookie.gohome.commands.Messages;
-import de.raizcookie.gohome.commands.SetHomeCommand;
+import de.raizcookie.gohome.commands.SetHome;
 
 public class CreateInventory implements Listener{
 	
-	  static FileConfiguration cfg = SetHomeCommand.cfg;
+	  static FileConfiguration cfg = SetHome.cfg;
 	
 	public static void openGUI(Player p, String t, final String INV_NAME, final int INV_ROWS, final Material INV_MATERIAL){
 		ArrayList<String> playerHomes = new ArrayList<String>();
@@ -54,7 +53,7 @@ public class CreateInventory implements Listener{
             float pitch = (float)cfg.getDouble(t + "." + homeName + ".Pitch");
             Location loc = new Location(world, x, y, z, yaw, pitch);
             p.teleport(loc);
-            p.sendMessage(Messages.cfg.getString("teleport_success").replace("&", "ง").replace("<home>", homeName));
+            p.sendMessage(Messages.cfg.getString("teleport_success").replace("&", "ยง").replace("<home>", homeName));
 		}
 	}
 

@@ -1,10 +1,10 @@
 package de.raizcookie.gohome.main;
 
-import de.raizcookie.gohome.commands.DelHomeCommand;
-import de.raizcookie.gohome.commands.HomeCommand;
-import de.raizcookie.gohome.commands.Messages;
-import de.raizcookie.gohome.commands.SetHomeCommand;
-import de.raizcookie.gohome.inventory.CreateInventory;
+import de.raizcookie.gohome.commands.DeleteHome;
+import de.raizcookie.gohome.commands.TeleportHome;
+import de.raizcookie.gohome.methods.CreateInventory;
+import de.raizcookie.gohome.methods.Messages;
+import de.raizcookie.gohome.commands.SetHome;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,9 +15,9 @@ public class Main extends JavaPlugin{
   public void onEnable(){
     plugin = this;
     System.out.println("[GoHome] started!");
-    getCommand("delhome").setExecutor(new DelHomeCommand());
-    getCommand("home").setExecutor(new HomeCommand());
-    getCommand("sethome").setExecutor(new SetHomeCommand());
+    getCommand("delhome").setExecutor(new DeleteHome());
+    getCommand("home").setExecutor(new TeleportHome());
+    getCommand("sethome").setExecutor(new SetHome());
     Messages.create();
     Messages.check();
     Bukkit.getPluginManager().registerEvents(new CreateInventory(), this);

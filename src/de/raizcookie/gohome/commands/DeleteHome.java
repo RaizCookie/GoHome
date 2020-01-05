@@ -8,11 +8,13 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-public class DelHomeCommand implements CommandExecutor{
-  public static FileConfiguration cfg = SetHomeCommand.cfg;
+import de.raizcookie.gohome.methods.Messages;
+
+public class DeleteHome implements CommandExecutor{
+  public static FileConfiguration cfg = SetHome.cfg;
   public void save(){
     try{
-      cfg.save(SetHomeCommand.homes);
+      cfg.save(SetHome.homes);
     }
     catch (IOException e){
       e.printStackTrace();
@@ -24,30 +26,30 @@ public class DelHomeCommand implements CommandExecutor{
     	return false;
       Player p = (Player)sender;
     if (!p.hasPermission("gohome.delete")) {
-    	p.sendMessage(Messages.cfg.getString("no_permission").replace("&", "ง"));
+    	p.sendMessage(Messages.cfg.getString("no_permission").replace("&", "ยง"));
     	return false;
     }
     
     Messages.check();
     
         if (args.length == 1) {
-          if (!(SetHomeCommand.homes.exists()) && !(SetHomeCommand.homes.length() > 1L))  {
-        	  p.sendMessage(Messages.cfg.getString("not_set").replace("&", "ง"));
+          if (!(SetHome.homes.exists()) && !(SetHome.homes.length() > 1L))  {
+        	  p.sendMessage(Messages.cfg.getString("not_set").replace("&", "ยง"));
         	  return false;
           }
           
             args[0] = args[0].toLowerCase();
             if (!cfg.contains(p.getName() + "." + args[0])) {
-              p.sendMessage(Messages.cfg.getString("home_is_null").replace("&", "ง").replace("<ARG0>", args[0]));
+              p.sendMessage(Messages.cfg.getString("home_is_null").replace("&", "ยง").replace("<ARG0>", args[0]));
             }
             else {
               cfg.set(p.getName() + "." + args[0], null);
               save();
-              p.sendMessage(Messages.cfg.getString("home_del_success").replace("&", "ง").replace("<ARG0>", args[0]));
+              p.sendMessage(Messages.cfg.getString("home_del_success").replace("&", "ยง").replace("<ARG0>", args[0]));
             }
         }
         else if (args.length == 0)  {
-          if (SetHomeCommand.homes.exists() && SetHomeCommand.homes.length() > 1L)  {
+          if (SetHome.homes.exists() && SetHome.homes.length() > 1L)  {
             ConfigurationSection cs = cfg.getConfigurationSection(p.getName() + ".");
             int i = 0;
             String homeName = "";
@@ -55,28 +57,27 @@ public class DelHomeCommand implements CommandExecutor{
               i++;
               homeName = homes;
             }
-            if (homeName != "" && (SetHomeCommand.homes.length() > 1L))   {
+            if (homeName != "" && (SetHome.homes.length() > 1L))   {
               if (i != 1) {
-                p.sendMessage(Messages.cfg.getString("home_del_usage").replace("&", "ง"));
+                p.sendMessage(Messages.cfg.getString("home_del_usage").replace("&", "ยง"));
               }
               else {
                 cfg.set(p.getName() + "." + homeName, null);
                 save();
-                p.sendMessage(Messages.cfg.getString("home_del_success").replace("&", "ง").replace("<ARG0>", homeName));
+                p.sendMessage(Messages.cfg.getString("home_del_success").replace("&", "ยง").replace("<ARG0>", homeName));
               }
             }
             else {
-              p.sendMessage(Messages.cfg.getString("not_set").replace("&", "ง"));
+              p.sendMessage(Messages.cfg.getString("not_set").replace("&", "ยง"));
             }
           }
           else  {
-            p.sendMessage(Messages.cfg.getString("not_set").replace("&", "ง"));
+            p.sendMessage(Messages.cfg.getString("not_set").replace("&", "ยง"));
           }
         }
         else {
-          p.sendMessage(Messages.cfg.getString("home_del_usage").replace("&", "ง"));
+          p.sendMessage(Messages.cfg.getString("home_del_usage").replace("&", "ยง"));
         }
-    
     return false;
   }
 }
