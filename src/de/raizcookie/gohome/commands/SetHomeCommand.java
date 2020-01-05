@@ -22,6 +22,7 @@ public class SetHomeCommand implements CommandExecutor{
       Player p = (Player)sender;
       if (!p.hasPermission("gohome.set")){
     	  p.sendMessage(Messages.cfg.getString("no_permission").replace("&", "§"));
+    	  return false;
       }
         Messages.check();
         if (args.length == 1){

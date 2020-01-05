@@ -4,6 +4,9 @@ import de.raizcookie.gohome.commands.DelHomeCommand;
 import de.raizcookie.gohome.commands.HomeCommand;
 import de.raizcookie.gohome.commands.Messages;
 import de.raizcookie.gohome.commands.SetHomeCommand;
+import de.raizcookie.gohome.inventory.CreateInventory;
+
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin{
@@ -17,6 +20,7 @@ public class Main extends JavaPlugin{
     getCommand("sethome").setExecutor(new SetHomeCommand());
     Messages.create();
     Messages.check();
+    Bukkit.getPluginManager().registerEvents(new CreateInventory(), this);
   }
   
   public static Main getPlugin(){
